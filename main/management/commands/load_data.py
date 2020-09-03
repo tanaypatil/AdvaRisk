@@ -1,3 +1,4 @@
+import io
 import multiprocessing
 from datetime import datetime
 
@@ -38,10 +39,12 @@ class Command(BaseCommand):
                 print(e)
 
     def handle(self, *args, **options):
+        print("Starting data migration...")
         file_path = DATA_FILE_PATH
-        with open(file_path, "r") as file:
+        with io.open(file_path, "r", encoding="ISO-8859-1") as file:
             data = file.read()
         items = data.split("\n\n")
+        print("Items to be migrated =", str(len(items)))
         inputs = [items[i*150000:i*150000+150000] for i in range(4)]
         pool = multiprocessing.Pool(processes=4)
         pool.map(Command.create_reviews, inputs)
