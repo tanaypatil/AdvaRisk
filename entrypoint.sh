@@ -19,10 +19,11 @@ until postgres_ready; do
   sleep 1
 done
 
+gdown https://drive.google.com/uc?id=1OqKczEjltBkWwjTRU4q6vIbpiGJIMWeU
+ls /AdvaRisk
 rm -rf main/migrations
 python manage.py makemigrations main
 python manage.py migrate main
 python manage.py migrate
 echo "#######"
-python manage.py load_data
-python manage.py runserver 0.0.0.0:8000
+python manage.py load_data & python manage.py runserver 0.0.0.0:8000
