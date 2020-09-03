@@ -24,5 +24,5 @@ python manage.py makemigrations main
 python manage.py migrate main
 python manage.py migrate
 echo "#######"
-python manage.py runserver 0.0.0.0:8000
 python manage.py load_data
+python manage.py runserver 0.0.0.0:8000
