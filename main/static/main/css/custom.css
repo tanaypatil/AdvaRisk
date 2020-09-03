@@ -1,0 +1,28 @@
+.review_box {
+    background-color: #f9d29d;
+    background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+    font-size: small;
+    box-shadow: 2px 2px 1px #b3d7ff;
+}
+
+*::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    background: antiquewhite; /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #b3d7ff; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid antiquewhite; /* creates padding around scroll thumb */
+}
+
+textarea {
+    resize: none;
+}
+
+body{
+    background-color: #E7E7E7;
+}

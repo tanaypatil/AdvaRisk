@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdvaRisk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}" type="text/css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-8 offset-2">
+                <form>
+                    <div class="form-row align-items-center">
+                        <div class="input-group mb-3">
+                            <input id="searchbar" type="text" class="form-control" placeholder="Search review..."
+                                   aria-label="Search review" aria-describedby="button-addon2">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-3 mb-3">
+            <div class="col-12">
+                <p class="text-dark">Results</p><hr class="bg-light">
+            </div>
+        </div>
+        <!--Results Row-->
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div id="review_boxes">
+                    {% include 'main/review_boxes.html' with reviews=reviews %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 mb-3">
+            <div class="col-10 offset-1">
+                <div id="pages">
+                    {% include "main/pages.html" with reviews=reviews term=term %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'main/js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'main/js/custom.js' %}" type="text/javascript"></script>
+    <script>
+        {% if term %}
+            $('#searchbar').val("{{ term }}");
+            highlight_search("{{ term }}");
+        {% endif %}
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<nav aria-label="pagination" class="pagination_area">
+    <div class="row">
+        {% if reviews.end_index > 0 %}
+            <div class="col-sm-12 col-md-5 d-none d-md-block">
+                <p>Showing {{ reviews.start_index }} to {{ reviews.end_index }} of {{ reviews.paginator.count }}.</p>
+            </div>
+        {% endif %}
+        {% if reviews.paginator.num_pages > 1 %}
+            <div class="col-sm-12 col-md-7 dataTables_pager">
+                <ul class="pagination">
+                    {% if reviews.has_previous %}
+
+                        <li class="page-item">
+                            <a class="page-link" data-page="1" href="?page={{ reviews.previous_page_number }}&search={{ term }}">
+                                <i class="fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        {% if reviews.previous_page_number > 1 %}
+                            <li class="page-item">
+                                <a class="page-link " data-page="{{ reviews.previous_page_number }}"
+                                   href="?page={{ reviews.previous_page_number }}&search={{ term }}">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% if reviews.previous_page_number > 2 %}
+                        <li class="page-item">
+                            <a class="page-link " data-page="{{ reviews.number|add:'-2' }}"
+                               href="?{{ reviews.number|add:'-2' }}&search={{ term }}"> {{ reviews.number|add:"-2" }} </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link " data-page="{{ reviews.number|add:'-1' }}"
+                               href="?page={{ reviews.number|add:'-1' }}&search={{ term }}"> {{ reviews.number|add:"-1" }} </a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active"><span class="page-link ">{{ reviews.number }}</span></li>
+
+                    {% if reviews.paginator.num_pages > reviews.number|add:"2" %}
+                        <li class="page-item">
+                            <a class="page-link " data-page="{{ reviews.number|add:'1' }}"
+                               href="?page={{ reviews.number|add:'1' }}&search={{ term }}"> {{ reviews.number|add:"1" }} </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link " data-page="{{ reviews.number|add:'2' }}"
+                               href="?page={{ reviews.number|add:'2' }}&search={{ term }}"> {{ reviews.number|add:"2" }} </a>
+                        </li>
+                    {% endif %}
+
+                    {% if reviews.has_next %}
+                        <li class="page-item">
+                            <a class="page-link " data-page="{{ reviews.next_page_number }}"
+                               href="?page={{ reviews.next_page_number }}&search={{ term }}">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link " data-page="{{ reviews.paginator.num_pages }}"
+                               href="?page={{ reviews.paginator.num_pages }}&search={{ term }}">
+                                <i class="fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</nav>
